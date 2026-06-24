@@ -1,0 +1,454 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+/* =========================
+   HEADER
+========================= */
+.edit-info {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: 18px;
+    min-height: 18px;
+}
+.app-header {
+    background: #002855;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
+.logo {
+    height: 38px;
+    width: auto;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.container {
+    padding: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* =========================
+   KARTY
+========================= */
+
+.card {
+    background: #ffffff;
+    border-radius: 18px;
+
+    padding: 20px;
+
+    margin-bottom: 16px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.04),
+        0 8px 24px rgba(0,0,0,.03);
+}
+
+.card h2 {
+    color: #002855;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+.card-title-center {
+    text-align: center;
+    color: #002855;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+/* =========================
+   FORMULARZ
+========================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+    font-size: .95rem;
+
+    color: #374151;
+}
+
+input,
+textarea {
+    width: 100%;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 12px;
+
+    padding: 14px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: .2s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #002855;
+    box-shadow: 0 0 0 3px rgba(0,40,85,.12);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* =========================
+   BUTTONY
+========================= */
+
+.btn-primary {
+    width: 100%;
+
+    border: none;
+
+    background: #002855;
+    color: white;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.btn-primary:hover {
+    opacity: .95;
+}
+
+.btn-secondary {
+    border: none;
+
+    background: #e5e7eb;
+
+    color: #111827;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.btn-edit {
+    border: none;
+
+    background: #eef2ff;
+    color: #1e40af;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.btn-delete,
+.delivery-delete-btn {
+
+    border: none;
+
+    background: #fee2e2;
+    color: #b91c1c;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.new-day-btn {
+
+    display: none;
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    font-size: 1rem;
+
+    font-weight: 700;
+}
+
+/* =========================
+   PODSUMOWANIE
+========================= */
+
+.stats {
+    display: flex;
+    gap: 12px;
+}
+
+.stat-box {
+    flex: 1;
+
+    background: #f9fafb;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+
+    color: #002855;
+}
+
+.stat-label {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #6b7280;
+}
+
+/* =========================
+   SEKCJA DOSTAW
+========================= */
+
+.section-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+#deliveryList {
+    max-height: 250px;
+    overflow-y: auto;
+
+    padding-right: 4px;
+}
+#deliveryList::-webkit-scrollbar {
+    width: 6px;
+}
+
+#deliveryList::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 20px;
+}
+
+#deliveryList::-webkit-scrollbar-track {
+    background: transparent;
+}
+/* =========================
+   ELEMENT DOSTAWY
+========================= */
+
+.delivery-item {
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    padding: 16px;
+
+    margin-bottom: 12px;
+
+    background: #ffffff;
+}
+
+.delivery-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.delivery-time {
+    color: #6b7280;
+    font-size: .9rem;
+}
+
+.delivery-pallets {
+    font-weight: 700;
+    color: #002855;
+}
+
+.delivery-supplier {
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.delivery-notes {
+    color: #6b7280;
+
+    font-size: .95rem;
+
+    margin-bottom: 14px;
+}
+
+.delivery-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ========================
+Alert
+==========================*/
+.modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+
+    width: 90%;
+    max-width: 360px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    text-align: center;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
+
+.modal-content h3 {
+    color: #002855;
+    margin-bottom: 14px;
+}
+
+.delete-info {
+
+    margin: 20px 0;
+
+    padding: 14px;
+
+    background: #f3f4f6;
+
+    border-radius: 12px;
+
+    font-weight: 600;
+}
+
+.modal-actions {
+
+    display: flex;
+    gap: 10px;
+}
+
+.modal-actions button {
+    flex: 1;
+}
+
+.report-content {
+
+text-align: left;
+
+background: #f8fafc;
+
+padding: 14px;
+
+border-radius: 12px;
+
+max-height: 350px;
+overflow-y: auto;
+
+white-space: pre-wrap;
+
+font-family: monospace;
+
+margin: 15px 0;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 12px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .stats {
+        flex-direction: row;
+    }
+
+    .logo {
+        height: 32px;
+    }
+
+}
