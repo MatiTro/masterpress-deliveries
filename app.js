@@ -6,6 +6,11 @@ const addButton = document.getElementById("addDeliveryBtn");
 const deliveryList = document.getElementById("deliveryList");
 const deliveryCount = document.getElementById("deliveryCount");
 const palletCount = document.getElementById("palletCount");
+const monthlyDeliveryCount =
+    document.getElementById("monthlyDeliveryCount");
+
+const monthlyPalletCount =
+    document.getElementById("monthlyPalletCount");
 const formTitle = document.getElementById("formTitle");
 const editInfo = document.getElementById("editInfo");
 
@@ -154,27 +159,25 @@ deliveries.forEach(delivery => {
     item.className = "delivery-item";
 
     item.innerHTML = `
-        <div class="delivery-top">
+    <div class="delivery-top">
 
-            <span class="delivery-time">
-                ${delivery.time}
-            </span>
+        <div>
 
-            <span class="delivery-pallets">
-                ${delivery.pallets} palet
-            </span>
+            <div class="delivery-supplier">
+                ${delivery.supplier}
+            </div>
+
+            <div class="delivery-time">
+                ${delivery.time} • ${delivery.pallets} palet
+            </div>
+
+            ${
+                delivery.notes
+                    ? `<div class="delivery-notes">${delivery.notes}</div>`
+                    : ""
+            }
 
         </div>
-
-        <div class="delivery-supplier">
-            ${delivery.supplier}
-        </div>
-
-        ${
-            delivery.notes
-                ? `<div class="delivery-notes">${delivery.notes}</div>`
-                : ""
-        }
 
         <div class="delivery-actions">
 
@@ -185,13 +188,15 @@ deliveries.forEach(delivery => {
             </button>
 
             <button
-    class="delivery-delete-btn"
-    data-id="${delivery.id}">
-    Usuń
-</button>
+                class="delivery-delete-btn"
+                data-id="${delivery.id}">
+                Usuń
+            </button>
 
         </div>
-    `;
+
+    </div>
+`;
 
     deliveryList.appendChild(item);
 
@@ -298,7 +303,22 @@ const totalPallets = deliveries.reduce(
 palletCount.textContent = totalPallets;
 
 }
+function updateMonthlyStats() {
 
+    monthlyDeliveryCount.textContent =
+        monthlyHistory.length;
+
+    const totalPallets =
+        monthlyHistory.reduce(
+            (sum, delivery) =>
+                sum + Number(delivery.pallets),
+            0
+        );
+
+    monthlyPalletCount.textContent =
+        totalPallets;
+
+}
 // --------------------------------
 // LocalStorage
 // --------------------------------
@@ -318,7 +338,7 @@ localStorage.setItem(
 
 renderDeliveries();
 updateStats();
-
+updateMonthlyStats();
 
 cancelDeleteBtn.onclick = () => {
 
@@ -354,25 +374,37 @@ reportBtn.onclick = () => {
         .toLocaleDateString("pl-PL");
 
     let report =
-`Raport dostaw - ${today}
+`REJESTR DOSTAW
+
+${today}
 
 `;
 
-    deliveries.forEach(delivery => {
+    const reportDeliveries = [...deliveries].reverse();
+
+    reportDeliveries.forEach(delivery => {
 
         report +=
-`${delivery.time} | ${delivery.supplier} | ${delivery.pallets} palet
+`────────────────────────────────────
+
+Godzina : ${delivery.time}
+
+Dostawca: ${delivery.supplier}
+
+Palety   : ${delivery.pallets}`;
+
+if (delivery.notes) {
+
+    report += `
+
+Uwagi:
+${delivery.notes}`;
+
+}
+
+report += `
 
 `;
-
-        if (delivery.notes) {
-
-            report +=
-`Uwagi: ${delivery.notes}
-
-`;
-
-        }
 
     });
 
@@ -382,10 +414,12 @@ reportBtn.onclick = () => {
     );
 
     report +=
-`--------------------------------
+`────────────────────────────────────
 
-Łączna liczba dostaw: ${deliveries.length}
-Łączna liczba palet: ${totalPallets}`;
+Liczba dostaw: ${deliveries.length}
+
+Łączna liczba palet: ${totalPallets}
+`;
 
     reportContent.textContent = report;
 
@@ -422,7 +456,7 @@ newDayBtn.addEventListener("click", () => {
         "monthlyHistory",
         JSON.stringify(monthlyHistory)
     );
-
+updateMonthlyStats();
     // wyczyść bieżący dzień
 
     deliveries = [];
@@ -521,7 +555,7 @@ newMonthBtn.addEventListener("click", () => {
         "monthlyHistory",
         JSON.stringify([])
     );
-
+updateMonthlyStats();
     monthlyReportModal.classList.remove("show");
 
     newMonthBtn.style.display = "none";

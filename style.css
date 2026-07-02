@@ -270,7 +270,7 @@ textarea {
     margin-bottom: 20px;
 }
 #deliveryList {
-    max-height: 250px;
+    max-height: 350px;
     overflow-y: auto;
 
     padding-right: 4px;
@@ -305,16 +305,14 @@ textarea {
 
 .delivery-top {
     display: flex;
-
     justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 10px;
+    align-items: flex-start;
 }
 
 .delivery-time {
     color: #6b7280;
     font-size: .9rem;
+    margin-bottom: 2px;
 }
 
 .delivery-pallets {
@@ -323,23 +321,22 @@ textarea {
 }
 
 .delivery-supplier {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 700;
-
-    margin-bottom: 8px;
+    margin-bottom: 2px;
 }
 
 .delivery-notes {
+    margin-top: 4px;
+    font-size: .9rem;
     color: #6b7280;
-
-    font-size: .95rem;
-
-    margin-bottom: 14px;
 }
 
 .delivery-actions {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 6px;
+    margin-left: 12px;
 }
 
 /* ========================
